@@ -55,6 +55,47 @@ The application follows a simple layered architecture with clear separation of r
 
 This separation keeps business logic independent from API and database concerns while avoiding unnecessary architectural complexity.
 
+## Architecture Diagram
+                    ┌─────────────────────┐
+                    │       Client        │
+                    │   Swagger / HTTP    │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │    ** API Layer **      │
+                    │   Controllers       │
+                    │   DTOs / Endpoints  │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │   **Application **      │
+                    │   Services          │
+                    │   Business Logic    │
+                    │   Interfaces       │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │     **Domain **         │
+                    │     Entities        │
+                    │     Enums           │
+                    │     Rules            │
+                    └──────────┬──────────┘
+                               ▲
+                               │
+                    ┌──────────┴──────────┐
+                    │   **Infrastructure**    │
+                    │   EF Core / DbContext│
+                    │   Repositories       │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │     **SQL Server **     │
+                    └─────────────────────┘
+                    
 ## Assumptions
 * SQL Server is available in the local development environment.
 * The configured connection string points to a valid SQL Server instance.
