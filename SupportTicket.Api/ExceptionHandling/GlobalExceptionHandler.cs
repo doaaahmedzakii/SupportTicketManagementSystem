@@ -18,18 +18,21 @@ namespace SupportTicket.Api.ExceptionHandling
             {
                 TicketNotFoundException => StatusCodes.Status404NotFound,
                 InvalidStatusTransitionException => StatusCodes.Status409Conflict,
+                ArgumentException => StatusCodes.Status400BadRequest,
                 _ => StatusCodes.Status500InternalServerError
             };
             var title = exception switch
             {
                 TicketNotFoundException => "ticket not found",
                 InvalidStatusTransitionException => "Invalid Status transition",
+                ArgumentException => "Invalid request",
                 _ => "Internal server Error"
             };
             var detail = exception switch
             {
                 TicketNotFoundException => exception.Message,
                 InvalidStatusTransitionException => exception.Message,
+                ArgumentException => exception.Message,
                 _ => "An Unexpected error"
             };
 

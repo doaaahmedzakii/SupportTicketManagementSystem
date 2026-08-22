@@ -180,12 +180,17 @@ namespace SupportTicket.Tests.Services
             _ticketRepositoryMock.Setup(x => x.GetByIdAsync(ticketId))
                 .ReturnsAsync(existingTicket);
             _ticketRepositoryMock.Setup(x => x.UpdateAsync(It.IsAny<Ticket>()))
-                .ReturnsAsync(existingTicket);   
+                .ReturnsAsync(existingTicket);
+            _mapperMock.Setup(x => x.Map(updatedDto, existingTicket))
+                .Callback<UpdateTicketDto, Ticket>((dto, ticket) =>
+                {
+                    ticket.Status = dto.status;
+                });
 
             await _ticketService.UpdateTicketAsync(ticketId, updatedDto);
             _ticketRepositoryMock.Verify(x => x.UpdateAsync(It.IsAny<Ticket>()),
                 Times.Once);
-            Assert.NotEqual(TicketStatus.Resolved, existingTicket.Status);
+            Assert.Equal(TicketStatus.Resolved, existingTicket.Status);
         }
     }
 }

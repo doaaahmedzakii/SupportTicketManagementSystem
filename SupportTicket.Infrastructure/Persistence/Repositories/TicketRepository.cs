@@ -21,7 +21,7 @@ namespace SupportTicket.Infrastructure.Persistence.Repositories
                 query = query.Where( x => x.Status == status.Value );
             if (priority.HasValue)
                 query = query.Where( x => x.Priority == priority.Value);
-            return await _context.Tickets.ToListAsync();
+            return await query.ToListAsync();
         }
         public async Task<Ticket> CreateAsync(Ticket ticket)
         {
@@ -59,6 +59,8 @@ namespace SupportTicket.Infrastructure.Persistence.Repositories
             {
                 throw new Exception($"Ticket with ID {ticket.Id} not found.");
             }
+            _context.Entry(updatedTicket).CurrentValues.SetValues(ticket);
+            await _context.SaveChangesAsync();
             return updatedTicket;
         }
     }

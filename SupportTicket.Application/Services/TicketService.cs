@@ -20,7 +20,6 @@ namespace SupportTicket.Application.Services
             _mapper = mapper;
             _logger = logger;
         }
-
         public async Task<IEnumerable<TicketResponseDto>> GetAllTicketsAsync(
             TicketStatus? status,
             TicketPriority? priority)
@@ -29,13 +28,19 @@ namespace SupportTicket.Application.Services
             return _mapper.Map<IEnumerable<TicketResponseDto>>(tickets);
 
         }
-
         public async Task<TicketResponseDto> ChangeTicketStatusAsync(int ticketId, UpdateTicketStatusDto updateStatus)
         {
             var ticket = await _ticketRepository.GetByIdAsync(ticketId);
             if (ticket == null)
             {
                 throw new TicketNotFoundException($"Ticket with ID not found.");
+            }
+            if (ticket.Status != updateStatus.status)
+            {
+                if (!IsValidStatusTransition(ticket.Status, updateStatus.status))
+                {
+                    throw new InvalidStatusTransitionException("Invalid transition");
+                }
             }
             ticket.Status = updateStatus.status;
             ticket.UpdatedAt = DateTime.UtcNow;
@@ -97,10 +102,10 @@ namespace SupportTicket.Application.Services
                     throw new InvalidStatusTransitionException($"Invalid transition");
                 }
             }
-
             _mapper.Map(updateTicket, ticket);
             ticket.UpdatedAt = DateTime.UtcNow;
             await _ticketRepository.UpdateAsync(ticket);
+            _logger.LogInformation("Ticket Updated");
             return _mapper.Map<TicketResponseDto>(ticket);
         }
 

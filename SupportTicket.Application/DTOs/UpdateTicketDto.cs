@@ -13,7 +13,11 @@ namespace SupportTicket.Application.DTOs
         [Required]
         [MinLength(5)]
         [MaxLength(100)]
-        public string Title { get; set; } = string.Empty; public string Description { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
+        [Required]
+        public string Description { get; set; } = string.Empty;
+        [Required]
+        [EmailAddress]
         public string CustomerEmail { get; set; } = string.Empty;
         public TicketPriority priority { get; set; }
         public TicketStatus status { get; set; }

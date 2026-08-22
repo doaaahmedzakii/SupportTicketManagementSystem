@@ -42,7 +42,7 @@ namespace SupportTicket.Api.Controllers
             if (ticket is null) return NotFound("The ticket is not found");
             return Ok(ticket);
         }
-        [HttpPatch("{id}/{status}")]
+        [HttpPatch("{id}/status")]
         public async Task<IActionResult> ChangeStatus(int id , UpdateTicketStatusDto dto)
         {
             var ticket = await _ticketService.ChangeTicketStatusAsync(id, dto);
