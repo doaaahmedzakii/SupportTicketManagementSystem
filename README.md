@@ -63,38 +63,42 @@ This separation keeps business logic independent from API and database concerns 
                                │
                                ▼
                     ┌─────────────────────┐
-                    │    ** API Layer **      │
+                    │       API Layer     │
                     │   Controllers       │
                     │   DTOs / Endpoints  │
                     └──────────┬──────────┘
                                │
                                ▼
                     ┌─────────────────────┐
-                    │   **Application **      │
+                    │     Application     │
                     │   Services          │
                     │   Business Logic    │
-                    │   Interfaces       │
+                    │   Interfaces        │
                     └──────────┬──────────┘
                                │
                                ▼
                     ┌─────────────────────┐
-                    │     **Domain **         │
+                    │       Domain        │
                     │     Entities        │
                     │     Enums           │
-                    │     Rules            │
+                    │     Rules           │
                     └──────────┬──────────┘
                                ▲
                                │
                     ┌──────────┴──────────┐
-                    │   **Infrastructure**    │
-                    │   EF Core / DbContext│
-                    │   Repositories       │
+                    │   Infrastructure    │
+                    │  EF Core / DbContext│
+                    │   Repositories      │
                     └──────────┬──────────┘
                                │
                                ▼
                     ┌─────────────────────┐
-                    │     **SQL Server **     │
+                    │     SQL Server      │
                     └─────────────────────┘
+
+## Sequence Diagram
+<img width="454" height="267" alt="image" src="https://github.com/user-attachments/assets/f62efd6b-ba9c-404d-a36d-71b5e0ec54a7" />
+
                     
 ## Assumptions
 * SQL Server is available in the local development environment.
