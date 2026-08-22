@@ -12,13 +12,17 @@
 3. Apply the database migrations.
 4. Run the API:
     dotnet run --project SupportTicket.Api
+
 The API can then be accessed through the configured application URL, and Swagger can be used to explore the available endpoints.
 
 ## Database Configuration
 The application uses **SQL Server** with **Entity Framework Core**.
+
 Update the connection string in:
     SupportTicket.Api/appsettings.json
+
 with the SQL Server instance and database name appropriate for your environment.
+
 Example:
   {
     "ConnectionStrings": {
@@ -29,11 +33,13 @@ Example:
 ## How to Run Migrations
 From the **Visual Studio Package Manager Console**, run:  
     Update-Database
+
 This applies the existing Entity Framework Core migrations and creates or updates the database schema.
 
 ## How to Run the Tests
 From Visual Studio:
     **Test → Run All Tests**
+
 This executes the automated tests covering the required ticket operations and business rules.
 
 ## Architecture
@@ -46,6 +52,7 @@ The application follows a simple layered architecture with clear separation of r
   Contains the core ticket entities, enums, and domain-related rules.
 * **Infrastructure Layer**
   Handles Entity Framework Core, database access, repositories, and migrations.
+
 This separation keeps business logic independent from API and database concerns while avoiding unnecessary architectural complexity.
 
 ## Assumptions
