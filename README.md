@@ -97,7 +97,7 @@ This separation keeps business logic independent from API and database concerns 
                     └─────────────────────┘
 
 ## Sequence Diagram
-<img width="454" height="267" alt="image" src="https://github.com/user-attachments/assets/f62efd6b-ba9c-404d-a36d-71b5e0ec54a7" />
+<img width="914" height="533" alt="image" src="https://github.com/user-attachments/assets/3376c3d3-341e-4df3-9ffe-9eae14c60777" />
 
                     
 ## Assumptions
