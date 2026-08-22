@@ -53,7 +53,6 @@ This separation keeps business logic independent from API and database concerns 
 * The configured connection string points to a valid SQL Server instance.
 * Entity Framework Core migrations are used to create and update the database schema.
 * The API is intended to run in a development/local environment as specified by the assignment.
-* The business rules and status transitions are implemented according to the requirements provided in the assignment.
 
 ## Improvements With More Time
 If more time were available, I would consider:
@@ -61,4 +60,5 @@ If more time were available, I would consider:
 * Adding API integration tests to verify the complete request/response flow.
 * Improving API documentation with more detailed endpoint examples.
 * Adding production-oriented configuration and deployment setup.
+
 These improvements are intentionally outside the current implementation scope to keep the solution focused on the assignment requirements.
